@@ -111,4 +111,28 @@ public class TimeRecordRepository {
         }
         return results;
     }
+    
+    private static final String FIND_BY_NAME_SQL = "SELECT TIME_RECORD.* FROM TIME_RECORD JOIN EMPLOYEE ON TIME_RECORD.employee_id=EMPLOYEE.id WHERE EMPLOYEE.name = ?";
+
+    public List<TimeRecord> findAllByName(String name) {
+        List<TimeRecord> results = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement(FIND_BY_NAME_SQL);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                TimeRecord tr = new TimeRecord(
+                        rs.getLong("id"),
+                        projectRepository.findById(rs.getLong("project_id")),
+                        employeeRepository.findById(rs.getLong("employee_id")),
+                        new Date(rs.getTimestamp("start").getTime()),
+                        new Date(rs.getTimestamp("end").getTime())
+                );
+                results.add(tr);
+            }
+        } catch (SQLException ex) {
+            LOGGER.log(Level.SEVERE, null, ex);
+        }
+        return results;
+    }
 }

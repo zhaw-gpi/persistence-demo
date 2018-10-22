@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.zhaw.sml.iwi.gpi.jdbc.demo;
 
 import ch.zhaw.sml.iwi.gpi.jdbc.demo.entity.Employee;
@@ -30,21 +25,31 @@ public class JDBCDemo {
 
         // Just some playing around ...
         
-        Employee e = new Employee("Peter Heinrich");
-        er.persist(e);
-
-        e = new Employee("Björn Scheppler");
-        er.persist(e);
-
         Project p = new Project("GPI Vorlesung");
         pr.persist(p);
 
+        Employee e = new Employee("Peter Heinrich");
+        er.persist(e);
+        
         TimeRecord tr = new TimeRecord(p, e, new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 8), new Date(System.currentTimeMillis()));
         trr.persist(tr);
-
+        
+        e = new Employee("Björn Scheppler");
+        er.persist(e);
+        
+        tr = new TimeRecord(p, e, new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 8), new Date(System.currentTimeMillis()));
+        trr.persist(tr);
+        
+        System.out.println("Dump all Entries:");
         List<TimeRecord> timeRecords = trr.findAll();
         for (TimeRecord em : timeRecords) {
-            System.out.println("ch.zhaw.sml.iwi.gpi.jdbc.demo.JDBCDemo.main() " + em.getId() + " " + em.getEmployee().getId() + " " + em.getStart() + " " + em.getEnd());
+            System.out.println("ch.zhaw.sml.iwi.gpi.jdbc.demo.JDBCDemo.main() " + em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
+        }
+        
+        System.out.println("Dump all Entries of Björn:");
+        timeRecords = trr.findAllByName("Björn Scheppler");
+        for (TimeRecord em : timeRecords) {
+            System.out.println("ch.zhaw.sml.iwi.gpi.jdbc.demo.JDBCDemo.main() " + em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
         }
 
     }

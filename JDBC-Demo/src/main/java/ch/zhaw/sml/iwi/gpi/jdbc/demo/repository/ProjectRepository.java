@@ -1,6 +1,5 @@
 package ch.zhaw.sml.iwi.gpi.jdbc.demo.repository;
 
-import ch.zhaw.sml.iwi.gpi.jdbc.demo.entity.Employee;
 import ch.zhaw.sml.iwi.gpi.jdbc.demo.entity.Project;
 import ch.zhaw.sml.iwi.gpi.jdbc.demo.service.DBConnection;
 import java.sql.Connection;
