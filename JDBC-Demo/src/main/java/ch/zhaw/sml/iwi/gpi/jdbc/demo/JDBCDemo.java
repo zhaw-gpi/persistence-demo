@@ -6,11 +6,13 @@
 package ch.zhaw.sml.iwi.gpi.jdbc.demo;
 
 import ch.zhaw.sml.iwi.gpi.jdbc.demo.entity.Employee;
+import ch.zhaw.sml.iwi.gpi.jdbc.demo.entity.Project;
+import ch.zhaw.sml.iwi.gpi.jdbc.demo.entity.TimeRecord;
 import ch.zhaw.sml.iwi.gpi.jdbc.demo.repository.EmployeeRepository;
 import ch.zhaw.sml.iwi.gpi.jdbc.demo.repository.ProjectRepository;
 import ch.zhaw.sml.iwi.gpi.jdbc.demo.repository.TimeRecordRepository;
-import ch.zhaw.sml.iwi.gpi.jdbc.demo.service.DBConnection;
-import java.sql.Statement;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -26,15 +28,23 @@ public class JDBCDemo {
         pr.initializeDBScema();
         trr.initializeDBScema();
 
-        Statement stmt = DBConnection.getConnection().createStatement();
-        String sql = "INSERT INTO Employee SET id=1, name='Peter Heinrich'";
-        stmt.executeUpdate(sql);
-        stmt = DBConnection.getConnection().createStatement();
-        sql = "INSERT INTO Employee SET id=2, name='Björn Scheppler'";
-        stmt.executeUpdate(sql);
+        // Just some playing around ...
+        
+        Employee e = new Employee("Peter Heinrich");
+        er.persist(e);
 
-        for (Employee e : er.findAll()) {
-            System.out.println("ch.zhaw.sml.iwi.gpi.jdbc.demo.JDBCDemo.main() " + e.getName());
+        e = new Employee("Björn Scheppler");
+        er.persist(e);
+
+        Project p = new Project("GPI Vorlesung");
+        pr.persist(p);
+
+        TimeRecord tr = new TimeRecord(p, e, new Date(System.currentTimeMillis() - 1000 * 60 * 60 * 8), new Date(System.currentTimeMillis()));
+        trr.persist(tr);
+
+        List<TimeRecord> timeRecords = trr.findAll();
+        for (TimeRecord em : timeRecords) {
+            System.out.println("ch.zhaw.sml.iwi.gpi.jdbc.demo.JDBCDemo.main() " + em.getId() + " " + em.getEmployee().getId() + " " + em.getStart() + " " + em.getEnd());
         }
 
     }

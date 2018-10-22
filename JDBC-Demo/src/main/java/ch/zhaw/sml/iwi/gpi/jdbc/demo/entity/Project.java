@@ -7,6 +7,10 @@ public class Project {
     public Project() {
     }
 
+    public Project(String name) {
+        this.name = name;
+    }
+
     public Project(Long id, String name) {
         this.id = id;
         this.name = name;
