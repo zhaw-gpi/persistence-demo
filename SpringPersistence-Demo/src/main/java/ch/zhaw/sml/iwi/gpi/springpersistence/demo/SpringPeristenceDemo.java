@@ -44,13 +44,18 @@ public class SpringPeristenceDemo implements CommandLineRunner{
         System.out.println("Dump all Entries:");
         Iterable<TimeRecord> timeRecords = recordRepository.findAll();
         for (TimeRecord em : timeRecords) {
-            System.out.println("ch.zhaw.sml.iwi.gpi.jdbc.demo.JDBCDemo.main() " + em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
+            System.out.println(em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
         }
         
-        System.out.println("Dump all Entries of Björn:");
+        System.out.println("Dump all Entries of Björn with JPQL:");
         timeRecords = recordRepository.findAllByName("Björn Scheppler");
         for (TimeRecord em : timeRecords) {
-            System.out.println("ch.zhaw.sml.iwi.gpi.jdbc.demo.JDBCDemo.main() " + em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
+            System.out.println(em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
+        }
+        
+        System.out.println("Dump all Entries of Björn without JPQL:");
+        for (TimeRecord em : recordRepository.findAllByEmployee(e)) {
+            System.out.println(em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
         }
     } 
 }

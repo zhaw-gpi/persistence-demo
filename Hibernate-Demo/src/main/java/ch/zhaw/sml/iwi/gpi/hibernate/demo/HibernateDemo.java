@@ -28,13 +28,13 @@ public class HibernateDemo {
         System.out.println("Dump all Entries:");
         List<TimeRecord> timeRecords = trr.findAll();
         for (TimeRecord em : timeRecords) {
-            System.out.println("ch.zhaw.sml.iwi.gpi.jdbc.demo.JDBCDemo.main() " + em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
+            System.out.println(em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
         }
         
         System.out.println("Dump all Entries of Björn:");
         timeRecords = trr.findAllByName("Björn Scheppler");
         for (TimeRecord em : timeRecords) {
-            System.out.println("ch.zhaw.sml.iwi.gpi.jdbc.demo.JDBCDemo.main() " + em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
+            System.out.println(em.getId() + " " + em.getEmployee().getName() + " " + em.getStart() + " " + em.getEnd());
         }
 
     }

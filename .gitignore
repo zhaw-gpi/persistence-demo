@@ -25,3 +25,7 @@ hs_err_pid*
 /Hibernate-Demo/target/
 /SpringPersistence-Demo/target/
 /SpringPersistenceLombok-Demo/target/
+/SpringPersistence-Demo/nbactions.xml
+/SpringPersistenceLombok-Demo/nbactions.xml
+/JDBC-Demo/nbactions.xml
+/Hibernate-Demo/nbactions.xml
