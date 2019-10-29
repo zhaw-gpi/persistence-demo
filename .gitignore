@@ -4,6 +4,8 @@
 **/.project
 **/.vscode/
 **/target/
+**/.settings
+**/.factorypath
 
 # Log file
 *.log
