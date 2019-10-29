@@ -23,6 +23,7 @@ public class JDBCDemo {
         pr.initializeDBScema();
         trr.initializeDBScema();
 
+        
         // Just some playing around ...
         
         Project p = new Project("GPI Vorlesung");

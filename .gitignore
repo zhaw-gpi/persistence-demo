@@ -1,5 +1,9 @@
 # Compiled class file
-*.class
+**/.class
+**/.classpath
+**/.project
+**/.vscode/
+**/target/
 
 # Log file
 *.log
@@ -21,11 +25,3 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-/JDBC-Demo/target/
-/Hibernate-Demo/target/
-/SpringPersistence-Demo/target/
-/SpringPersistenceLombok-Demo/target/
-/SpringPersistence-Demo/nbactions.xml
-/SpringPersistenceLombok-Demo/nbactions.xml
-/JDBC-Demo/nbactions.xml
-/Hibernate-Demo/nbactions.xml
